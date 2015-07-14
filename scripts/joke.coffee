@@ -7,23 +7,6 @@
 # Notes:
 #   ネタ/ジョーク系のbot全般
 
-botchan_tsundere = [
-  "いつも構ってくれて、どうもありがとう。",
-  "べ、別にあんたなんかがカッコいいだなんて、あたしは、ちっとも思ってないんだからねっ！",
-  "てっ、照れてないもんっ。",
-  "thx a lot.",
-  "ありがたく思いなさいよ。このあたしがいまこうして反応してやってるんだから。",
-  "そんなのウソだっ！し、信じないわよ！",
-  "私のこと気にしてないで、仕事しなさい。",
-  "口から牙が生えているのは、今日が暑いからよ。",
-  "あんた暇なのね？",
-  "Your kindness is very much appreciated.",
-  "なんだ、かわいいとこあるじゃない。",
-  "Guten Morgen!!（グーテン モルゲン!!）",
-  "いでよ！7人衆！！:wadacat::ookami::pegusus::face::bee::kuma::sushi:",
-  "そう、何ものも わたしの世界を 変えられはしない",
-]
-
 bleach_poem = [
   "我等は 姿無き故に それを畏れ"
   "もし わたしが雨だったなら それが永遠に交わることのない 空と大地を繋ぎ留めるように 誰かの心を繋ぎ留めることができただろうか"
@@ -94,9 +77,6 @@ module.exports = (robot) ->
 ```
   """
 
-  robot.respond /(like|いいね|ありがとう|thx|おーい|ちゃん|が|は)/i, (msg) ->
-    msg.send msg.random botchan_tsundere
-
   robot.hear /うほほ/i, (msg) ->
     msg.send 'そんなに儲かっちゃうの！'
 
@@ -118,12 +98,6 @@ module.exports = (robot) ->
     request = msg.http("https://slack.com/api/chat.postMessage?token=#{process.env.SLACK_API_TOKEN}&channel=%23#{channel}&text=https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F222%2F20074%2F14294047-7faf-1c13-ffd8-5ae3d18341be.jpeg&username=%E9%BB%92%E5%B4%8E%E4%B8%80%E8%AD%B7&icon_url=https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F222%2F20074%2Fe162010c-a600-f002-7af0-b7ff93d55a0d.png&pretty=1").get()
     request (err, res, body) ->
 
-  robot.hear /^たかさん$/i, (msg) ->
-    channel = msg.envelope.room
-    message = msg.random takasan
-    request = msg.http("https://slack.com/api/chat.postMessage?token=#{process.env.SLACK_API_TOKEN}&channel=%23#{channel}&text=#{message}&username=%E3%81%9F%E3%81%8B%E3%81%95%E3%82%93(bot)&icon_emoji=%3Atakasansmile%3A&pretty=1").get()
-    request (err, res, body) ->
-
   robot.hear /進捗どうですか/, (msg) ->
     msg.send msg.random progress
 
@@ -139,43 +113,3 @@ module.exports = (robot) ->
       "￣Y#{strpad '^Y', length}￣"
     ]
     msg.send suddendeath.join "\n"
-
-  robot.respond /(短冊|tanzaku) (.*)$/i, (msg) ->
-    message = msg.match[2].replace /^\s+|\s+$/g, ''
-    return until message.length
-
-    if message.length >= 16
-      msg.send "メッセージが長過ぎます＞＜ノ 15文字以内にしてね。"
-      return
-
-    tanzaku = [
-      "┏┷┓"
-      "┃　┃"
-    ]
-    for value in message.toArray()
-      tanzaku.push "┃#{value}┃"
-
-    tanzaku.push "┃　┃"
-    tanzaku.push "┗━┛"
-    msg.send tanzaku.join "\n"
-
-  new cronJob('0 0 19 * * 1-5', ->
-    url = "http://thecatapi.com/api/images/get?format=xml&results_per_page=1"
-    options =
-      url: url
-      timeout: 2000
-      headers: {'user-agent': 'thecat api fetcher'}
-
-    request options, (error, response, body) ->
-      $ = cheerio.load body
-      image_url = $(body).find("image").find("url").text()
-      message = "#{image_url}\n19時だにゃ〜！"
-
-      url = "https://slack.com/api/chat.postMessage?token=#{process.env.SLACK_API_TOKEN}&channel=%23cat&text=#{message}&username=nanapi_bot&icon_emoji=%3Ananapibot%3A&pretty=1"
-      options =
-        url: url
-        timeout: 2000
-        headers: {'user-agent': 'request to slack api'}
-      request options, (error, response, body) ->
-  , null, true,  "Asia/Tokyo")
-
