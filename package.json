@@ -29,6 +29,7 @@
     "hubot-irc": ">= 0.2.6",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-slack": "^3.2.1",
+    "hubot-slack-timeline": ">= 0.1.0",
     "hubot-heroku-keepalive": "0.0.4",
     "request": ">= 0.0.1",
     "time": ">= 0.0.1",
