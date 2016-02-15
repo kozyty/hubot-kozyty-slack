@@ -1,5 +1,5 @@
 # Description:
-#   nanapi_botちゃんに単語を学習させる
+#   botちゃんに単語を学習させる
 #   あまりうざくならないようにするため当面は"完全一致"での反応のみとする
 Fs = require 'fs'
 Path = require 'path'

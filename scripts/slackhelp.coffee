@@ -15,9 +15,6 @@ helpLinks =
 Slack Help Center Links.
 ・Slash Commands – Slack Help Center https://slack.zendesk.com/hc/en-us/articles/201259356-Slash-Commands
 ・Keyboard Shortcuts – cmd + ?
-
-Help Request.
-・nanapi Slack Request - https://nanapi.slack.com/help/requests/new
 ```
   """
 
