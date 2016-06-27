@@ -1,4 +1,5 @@
 [
   "hubot-slack-timeline",
-  "hubot-heroku-keepalive"
+  "hubot-heroku-keepalive",
+  "hubot-cat"
 ]
