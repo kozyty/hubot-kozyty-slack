@@ -84,25 +84,16 @@ module.exports = (robot) ->
     msg.send msg.random bleach_poem
 
   robot.hear /なよ$/, (msg) ->
-    channel = msg.message.room
-    request = msg.http("https://slack.com/api/chat.postMessage?token=#{process.env.SLACK_API_TOKEN}&channel=%23#{channel}&text=%3C%20%E5%BC%B1%E3%81%8F%E8%A6%8B%E3%81%88%E3%82%8B%E3%81%9E&username=%E8%97%8D%E6%9F%93%E6%83%A3%E5%8F%B3%E4%BB%8B&icon_url=https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F222%2F20074%2Fc9c07f06-3a6c-6cb4-1e81-5217b49a5184.png&pretty=1").get()
-    request (err, res, body) ->
+    robot.adapter.client.web.chat.postMessage(res.message.room, "< 弱く見えるぞ", {icon_url: "https://qiita-image-store.s3.amazonaws.com/222/20074/c9c07f06-3a6c-6cb4-1e81-5217b49a5184.png", pretty: true, username: "藍染惣右介"})
 
   robot.hear /霊圧/, (msg) ->
-    channel = msg.message.room
-    request = msg.http("https://slack.com/api/chat.postMessage?token=#{process.env.SLACK_API_TOKEN}&channel=%23#{channel}&text=%3C%20%E3%81%AA%E3%82%93%E3%83%BB%E3%83%BB%E3%83%BB%E3%81%A0%E3%81%A8%E3%83%BB%E3%83%BB%E3%83%BB&username=%E9%BB%92%E5%B4%8E%E4%B8%80%E8%AD%B7&icon_url=https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F222%2F20074%2Fe162010c-a600-f002-7af0-b7ff93d55a0d.png&pretty=1").get()
-    request (err, res, body) ->
+    robot.adapter.client.web.chat.postMessage(res.message.room, "< なん・・・だと・・・", {icon_url: "https://qiita-image-store.s3.amazonaws.com/222/20074/e162010c-a600-f002-7af0-b7ff93d55a0d.png", pretty: true, username: "黒崎一護"})
 
-  robot.hear /卍解|挽回/, (msg) ->
-    channel = msg.message.room
-    request = msg.http("https://slack.com/api/chat.postMessage?token=#{process.env.SLACK_API_TOKEN}&channel=%23#{channel}&text=https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F222%2F20074%2F14294047-7faf-1c13-ffd8-5ae3d18341be.jpeg&username=%E9%BB%92%E5%B4%8E%E4%B8%80%E8%AD%B7&icon_url=https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F222%2F20074%2Fe162010c-a600-f002-7af0-b7ff93d55a0d.png&pretty=1").get()
-    request (err, res, body) ->
+  robot.hear /卍解|挽回/, (res) ->
+    robot.adapter.client.web.chat.postMessage(res.message.room, "https://qiita-image-store.s3.amazonaws.com/222/20074/14294047-7faf-1c13-ffd8-5ae3d18341be.jpeg", {icon_url: "https://qiita-image-store.s3.amazonaws.com/222/20074/e162010c-a600-f002-7af0-b7ff93d55a0d.png", pretty: true, username: "黒崎一護"})
 
-  robot.hear /^(?=.*マーリン)(?=.*持って)/, (msg) ->
-    channel = msg.message.room
-    # robot.adapter.client.web.chat.postMessage(msg.message.room, "This is a message!", {as_user: true, unfurl_links: false})
-    request = msg.http("https://slack.com/api/chat.postMessage?token=#{process.env.SLACK_API_TOKEN}&channel=%23#{channel}&text=%E3%81%93%E3%82%8D%E3%81%99&username=mura24&icon_emoji=:bread_master:&pretty=1").get()
-    request (err, res, body) ->
+  robot.hear /^(?=.*マーリン)(?=.*持って)/, (res) ->
+    robot.adapter.client.web.chat.postMessage(res.message.room, "ころす", {icon_emoji: ":bread_master:", pretty: true, username: "mura24"})
 
   robot.hear /進捗どうですか/, (msg) ->
     msg.send msg.random progress
