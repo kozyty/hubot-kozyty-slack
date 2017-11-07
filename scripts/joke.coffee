@@ -98,6 +98,11 @@ module.exports = (robot) ->
     request = msg.http("https://slack.com/api/chat.postMessage?token=#{process.env.SLACK_API_TOKEN}&channel=%23#{channel}&text=https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F222%2F20074%2F14294047-7faf-1c13-ffd8-5ae3d18341be.jpeg&username=%E9%BB%92%E5%B4%8E%E4%B8%80%E8%AD%B7&icon_url=https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F222%2F20074%2Fe162010c-a600-f002-7af0-b7ff93d55a0d.png&pretty=1").get()
     request (err, res, body) ->
 
+  robot.hear /^(?=.*マーリン)(?=.*持って)/, (msg) ->
+    channel = msg.envelope.room
+    request = msg.http("https://slack.com/api/chat.postMessage?token=#{process.env.SLACK_API_TOKEN}&channel=%23#{channel}&text=%E3%81%93%E3%82%8D%E3%81%99&username=mura24&icon_emoji=:bread_master:&pretty=1").get()
+    request (err, res, body) ->
+
   robot.hear /進捗どうですか/, (msg) ->
     msg.send msg.random progress
 
