@@ -45,6 +45,15 @@ progress = [
   'http://38.media.tumblr.com/31ab4065305e3607b951332dde32b789/tumblr_mrkrlyMMIU1sckns5o1_500.jpg'
 ]
 
+brad_master_kill = [
+  "ころす"
+  "ぶっ殺す"
+  "2回ころす"
+  "殺したあと殺す"
+  "マーリン？持ってないよ？"
+  "ぐぬぬ・・・"
+]
+
 eastasianwidth = require 'eastasianwidth'
 
 cheerio = require 'cheerio'
@@ -93,7 +102,7 @@ module.exports = (robot) ->
     robot.adapter.client.web.chat.postMessage(res.message.room, "https://qiita-image-store.s3.amazonaws.com/222/20074/14294047-7faf-1c13-ffd8-5ae3d18341be.jpeg", {icon_url: "https://qiita-image-store.s3.amazonaws.com/222/20074/e162010c-a600-f002-7af0-b7ff93d55a0d.png", pretty: true, username: "黒崎一護"})
 
   robot.hear /^(?=.*マーリン)(?=.*持って)/, (res) ->
-    robot.adapter.client.web.chat.postMessage(res.message.room, "ころす", {icon_emoji: ":bread_master:", pretty: true, username: "mura24"})
+    robot.adapter.client.web.chat.postMessage(res.message.room, res.random brad_master_kill, {icon_emoji: ":bread_master:", pretty: true, username: "mura24"})
 
   robot.hear /進捗どうですか/, (msg) ->
     msg.send msg.random progress
