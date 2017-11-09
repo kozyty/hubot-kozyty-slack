@@ -112,7 +112,7 @@ module.exports = (robot) ->
     message = res.random brad_master_kill
     robot.adapter.client.web.chat.postMessage(res.message.room, message, {icon_emoji: ":bread_master:", pretty: true, username: "mura24"})
 
-  robot.hear /^(?=.*おくつ)(?=.*otukutun)/, (res) ->
+  robot.hear /おくつ|otukutun/, (res) ->
     message = res.random kubota_rage_kill
     robot.adapter.client.web.chat.postMessage(res.message.room, message, {icon_emoji: ":kubota_rage:", pretty: true, username: "daisuke_kubota"})
 
