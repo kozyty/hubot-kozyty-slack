@@ -54,6 +54,13 @@ brad_master_kill = [
   "ぐぬぬ・・・"
 ]
 
+kubota_rage_kill = [
+  "殺す"
+  "マジでこいつ無能だな"
+  "早く死んで欲しい"
+  "死ね"
+]
+
 eastasianwidth = require 'eastasianwidth'
 
 cheerio = require 'cheerio'
@@ -104,6 +111,10 @@ module.exports = (robot) ->
   robot.hear /^(?=.*マーリン)(?=.*持って)/, (res) ->
     message = res.random brad_master_kill
     robot.adapter.client.web.chat.postMessage(res.message.room, message, {icon_emoji: ":bread_master:", pretty: true, username: "mura24"})
+
+  robot.hear /^(?=.*おくつ)(?=.*otukutun)/, (res) ->
+    message = res.random kubota_rage_kill
+    robot.adapter.client.web.chat.postMessage(res.message.room, message, {icon_emoji: ":kubota_rage:", pretty: true, username: "daisuke_kubota"})
 
   robot.hear /進捗どうですか/, (msg) ->
     msg.send msg.random progress
