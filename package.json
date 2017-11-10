@@ -27,7 +27,7 @@
     "eastasianwidth": ">= 0.0.1",
     "hubot": ">= 1.0.0",
     "hubot-cat": ">= 0.0.4",
-    "hubot-heroku-keepalive": ">= 0.0.4",
+    "hubot-heroku-keepalive": "^1.0.3",
     "hubot-irc": ">= 0.2.6",
     "hubot-scripts": ">= 1.0.0",
     "hubot-slack": ">= 4.4.x",
